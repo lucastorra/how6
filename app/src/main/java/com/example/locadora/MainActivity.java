@@ -27,10 +27,9 @@ public class MainActivity extends AppCompatActivity {
         btnExit = (Button) findViewById(R.id.buttonExit);
         btnRent = (Button) findViewById(R.id.buttonLocacao);
 
-
         btnExit.setOnClickListener(new View.OnClickListener() {
             public void onClick (View v){
-                finish();
+                finishAffinity();
             }
         });
 
@@ -43,6 +42,19 @@ public class MainActivity extends AppCompatActivity {
         btnBrand.setOnClickListener(new View.OnClickListener() {
             public void onClick (View v){
                 startActivity(new Intent(MainActivity.this, Brand.class));
+            }
+        });
+
+        btnCar.setOnClickListener(new View.OnClickListener() {
+            public void onClick (View v){
+                startActivity(new Intent(MainActivity.this, Car.class));
+            }
+        });
+
+        btnRent.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this, Rent.class));
             }
         });
     }

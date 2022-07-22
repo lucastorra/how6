@@ -3,14 +3,18 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Faculdade/Locadora/app/src/main/res/layout/activity_brand.xml" value="0.264" />
+        <entry key="..\:/Faculdade/Locadora/app/src/main/res/layout/activity_brand.xml" value="0.1" />
+        <entry key="..\:/Faculdade/Locadora/app/src/main/res/layout/activity_car.xml" value="0.15441176470588236" />
         <entry key="..\:/Faculdade/Locadora/app/src/main/res/layout/activity_color.xml" value="0.1" />
         <entry key="..\:/Faculdade/Locadora/app/src/main/res/layout/activity_form_brand.xml" value="0.11302083333333333" />
+        <entry key="..\:/Faculdade/Locadora/app/src/main/res/layout/activity_form_car.xml" value="0.16614583333333333" />
         <entry key="..\:/Faculdade/Locadora/app/src/main/res/layout/activity_form_color.xml" value="0.16614583333333333" />
         <entry key="..\:/Faculdade/Locadora/app/src/main/res/layout/activity_form_marca.xml" value="0.20588235294117646" />
+        <entry key="..\:/Faculdade/Locadora/app/src/main/res/layout/activity_form_rent.xml" value="0.15155228758169934" />
         <entry key="..\:/Faculdade/Locadora/app/src/main/res/layout/activity_main.xml" value="0.1984375" />
         <entry key="..\:/Faculdade/Locadora/app/src/main/res/layout/activity_menu_teste.xml" value="0.16462418300653595" />
         <entry key="..\:/Faculdade/Locadora/app/src/main/res/layout/activity_paint.xml" value="0.1213235294117647" />
+        <entry key="..\:/Faculdade/Locadora/app/src/main/res/layout/activity_rent.xml" value="0.1" />
         <entry key="..\:/Faculdade/Locadora/app/src/main/res/layout/activity_teste1.xml" value="0.176" />
         <entry key="..\:/Faculdade/Locadora/app/src/main/res/layout/content_menu.xml" value="0.1213235294117647" />
         <entry key="..\:/Faculdade/Locadora/app/src/main/res/layout/fragment_gallery.xml" value="0.1213235294117647" />

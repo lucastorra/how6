@@ -14,6 +14,18 @@
         android:theme="@style/Theme.Locadora"
         tools:targetApi="31">
         <activity
+            android:name=".FormRent"
+            android:exported="false" />
+        <activity
+            android:name=".Rent"
+            android:exported="false" />
+        <activity
+            android:name=".FormCar"
+            android:exported="false" />
+        <activity
+            android:name=".Car"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
@@ -23,7 +35,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Color"
+            android:name=".Brand"
             android:exported="false" />
         <activity
             android:name=".FormBrand"
@@ -32,7 +44,7 @@
             android:name=".FormColor"
             android:exported="false" />
         <activity
-            android:name=".Brand"
+            android:name=".Color"
             android:exported="false" />
     </application>
 

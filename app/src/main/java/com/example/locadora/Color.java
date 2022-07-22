@@ -11,6 +11,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.example.locadora.database.ColorDao;
 import com.example.locadora.model.Colors;
@@ -29,6 +30,13 @@ public class Color extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_color);
+
+        TextView textView = (TextView) findViewById(R.id.textViewTitleColor);
+        textView.setOnClickListener(new View.OnClickListener() {
+            public void onClick (View v) {
+                startActivity(new Intent(Color.this, MainActivity.class));
+            }
+        });
 
         Button btnRegister = (Button) findViewById(R.id.button_RegisterColor);
         btnRegister.setOnClickListener(new View.OnClickListener() {

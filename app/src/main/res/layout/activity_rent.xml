@@ -4,22 +4,22 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Color">
+    tools:context=".Rent">
 
     <Button
-        android:id="@+id/button_RegisterColor"
+        android:id="@+id/button_RegisterRent"
         android:layout_width="400dp"
         android:layout_height="60dp"
         android:layout_marginTop="60dp"
         android:layout_marginBottom="1dp"
         android:text="Cadastrar"
-        app:layout_constraintBottom_toTopOf="@+id/listViewColors"
+        app:layout_constraintBottom_toTopOf="@+id/listViewRents"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ListView
-        android:id="@+id/listViewColors"
+        android:id="@+id/listViewRents"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="1dp"
@@ -28,21 +28,20 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewTitleColor" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewTitleRent" />
 
     <TextView
-        android:id="@+id/textViewTitleColor"
+        android:id="@+id/textViewTitleRent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="66dp"
-        android:text="Cadastro de Cores"
-        android:textSize="30sp"
+        android:text="Locações"
+        android:textSize="34sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/listViewColors"
+        app:layout_constraintBottom_toTopOf="@+id/listViewRents"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

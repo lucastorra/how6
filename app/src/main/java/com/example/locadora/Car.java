@@ -3,6 +3,7 @@ package com.example.locadora;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.media.session.MediaController;
 import android.os.Bundle;
 import android.view.ContextMenu;
 import android.view.MenuItem;
@@ -13,92 +14,93 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.example.locadora.database.BrandDao;
-import com.example.locadora.model.Brands;
+import com.example.locadora.database.CarDao;
+import com.example.locadora.model.Cars;
 
+import java.text.Normalizer;
 import java.util.ArrayList;
 
-public class Brand extends AppCompatActivity {
+public class Car extends AppCompatActivity {
 
-    BrandDao brandDao;
-    ArrayList<Brands> listViewBrands;
-    Brands brand;
     ListView listView;
-    ArrayAdapter<Brands> adapter;
+    ArrayAdapter<Cars> adapter;
+    CarDao carDao;
+    ArrayList<Cars> listViewCars;
+    Cars car;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_brand);  /// Informa ACTIVITY.
+        setContentView(R.layout.activity_car);
 
-        TextView textView = (TextView) findViewById(R.id.textViewTitleBrand);
+        TextView textView = (TextView) findViewById(R.id.textViewTitleCar);
         textView.setOnClickListener(new View.OnClickListener() {
             public void onClick (View v) {
-                startActivity(new Intent(Brand.this, MainActivity.class));
+                startActivity(new Intent(Car.this, MainActivity.class));
             }
         });
 
-        /// Ao usar o botão registrar chama a activity de form de marcas
-        Button btnRegister = (Button) findViewById(R.id.button_RegisterBrand);
+        /// Ação do botão registrar nova carro ou alterar.
+        Button btnRegister = (Button) findViewById(R.id.button_RegisterCar);
         btnRegister.setOnClickListener(new View.OnClickListener() {
             public void onClick (View v){
-                Intent intent = new Intent(Brand.this, FormBrand.class);
+                Intent intent = new Intent(Car.this, FormCar.class);
                 startActivity(intent);
             }
         });
 
-        listView = (ListView) findViewById(R.id.listViewBrands);
+        listView = (ListView) findViewById(R.id.listViewCars);
         registerForContextMenu(listView);
 
-        /// Ao realizar o click da lista, chama a activity de form, passando o ID escolhido por parâmetro
+        /// Ação do clique na grid para editar um carro
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapter, View view, int position, long id) {
-                Brands brandChosen = (Brands) adapter.getItemAtPosition(position);
-                Intent i = new Intent(Brand.this, FormBrand.class);
-                i.putExtra("brand-chosen", brandChosen);
+                Cars carChosen = (Cars) adapter.getItemAtPosition(position);
+                Intent i = new Intent(Car.this, FormCar.class);
+                i.putExtra("car-chosen", carChosen);
                 startActivity(i);
             }
         });
 
-        /// Ao realizar o click longo da lista, abre menu para confirmar a deleção.
+        /// Ação do clique longo do veículo
         listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener(){
             @Override
             public boolean onItemLongClick(AdapterView<?> adapter, View view, int position, long id) {
-                brand = (Brands) adapter.getItemAtPosition(position);
+                car = (Cars) adapter.getItemAtPosition(position);
                 return false;
             }
         });
     }
 
-    /// Método responsável por deletar a marca
+    /// Ação para deletar veículo
     @Override
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo){
-        MenuItem menuDelete = menu.add("Deletar essa marca");
+        MenuItem menuDelete = menu.add("Deletar esse carro");
         menuDelete.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem menuItem) {
-                brandDao = new BrandDao(Brand.this);
-                brandDao.deleteBrand(brand);
-                loadBrands();
+                carDao = new CarDao(Car.this);
+                carDao.deleteCar(car);
+                loadCars();
                 return true;
             }
         });
     }
 
-    /// Método para atualização da grid
+    /// Atualização da grid de veículos
     @Override
     protected void onResume() {
         super.onResume();
-        loadBrands();
+        loadCars();
     }
 
-    public void loadBrands(){
-        brandDao = new BrandDao(Brand.this);
-        listViewBrands = brandDao.getList();
+    public void loadCars(){
+        carDao = new CarDao(Car.this);
+        listViewCars = carDao.getList();
 
-        if (listViewBrands != null) {
-            adapter = new ArrayAdapter<Brands>(this, android.R.layout.simple_list_item_1, listViewBrands);
+        if (listViewCars != null) {
+            adapter = new ArrayAdapter<Cars>(this, android.R.layout.simple_list_item_1, listViewCars);
             listView.setAdapter(adapter);
         }
     }

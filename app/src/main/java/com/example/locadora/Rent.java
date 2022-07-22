@@ -13,95 +13,90 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.example.locadora.database.BrandDao;
-import com.example.locadora.model.Brands;
+import com.example.locadora.database.CarDao;
+import com.example.locadora.database.RentDao;
+import com.example.locadora.model.Cars;
+import com.example.locadora.model.Rents;
 
 import java.util.ArrayList;
 
-public class Brand extends AppCompatActivity {
+public class Rent extends AppCompatActivity {
 
-    BrandDao brandDao;
-    ArrayList<Brands> listViewBrands;
-    Brands brand;
     ListView listView;
-    ArrayAdapter<Brands> adapter;
+    ArrayAdapter<Rents> adapter;
+    RentDao rentDao;
+    ArrayList<Rents> listViewRents;
+    Rents rent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_brand);  /// Informa ACTIVITY.
+        setContentView(R.layout.activity_rent);
 
-        TextView textView = (TextView) findViewById(R.id.textViewTitleBrand);
+        TextView textView = (TextView) findViewById(R.id.textViewTitleRent);
         textView.setOnClickListener(new View.OnClickListener() {
             public void onClick (View v) {
-                startActivity(new Intent(Brand.this, MainActivity.class));
+                startActivity(new Intent(Rent.this, MainActivity.class));
             }
         });
 
-        /// Ao usar o botão registrar chama a activity de form de marcas
-        Button btnRegister = (Button) findViewById(R.id.button_RegisterBrand);
+        Button btnRegister = (Button) findViewById(R.id.button_RegisterRent);
         btnRegister.setOnClickListener(new View.OnClickListener() {
             public void onClick (View v){
-                Intent intent = new Intent(Brand.this, FormBrand.class);
+                Intent intent = new Intent(Rent.this, FormRent.class);
                 startActivity(intent);
             }
         });
 
-        listView = (ListView) findViewById(R.id.listViewBrands);
+        listView = (ListView) findViewById(R.id.listViewRents);
         registerForContextMenu(listView);
 
-        /// Ao realizar o click da lista, chama a activity de form, passando o ID escolhido por parâmetro
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapter, View view, int position, long id) {
-                Brands brandChosen = (Brands) adapter.getItemAtPosition(position);
-                Intent i = new Intent(Brand.this, FormBrand.class);
-                i.putExtra("brand-chosen", brandChosen);
+                Rents rentChosen = (Rents) adapter.getItemAtPosition(position);
+                Intent i = new Intent(Rent.this, FormRent.class);
+                i.putExtra("rent-chosen", rentChosen);
                 startActivity(i);
             }
         });
 
-        /// Ao realizar o click longo da lista, abre menu para confirmar a deleção.
         listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener(){
             @Override
             public boolean onItemLongClick(AdapterView<?> adapter, View view, int position, long id) {
-                brand = (Brands) adapter.getItemAtPosition(position);
+                rent = (Rents) adapter.getItemAtPosition(position);
                 return false;
             }
         });
     }
 
-    /// Método responsável por deletar a marca
     @Override
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo){
-        MenuItem menuDelete = menu.add("Deletar essa marca");
+        MenuItem menuDelete = menu.add("Deletar essa locação");
         menuDelete.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem menuItem) {
-                brandDao = new BrandDao(Brand.this);
-                brandDao.deleteBrand(brand);
-                loadBrands();
+                rentDao = new RentDao(Rent.this);
+                rentDao.deleteRent(rent);
+                loadRents();
                 return true;
             }
         });
     }
 
-    /// Método para atualização da grid
     @Override
     protected void onResume() {
         super.onResume();
-        loadBrands();
+        loadRents();
     }
 
-    public void loadBrands(){
-        brandDao = new BrandDao(Brand.this);
-        listViewBrands = brandDao.getList();
+    public void loadRents(){
+        rentDao = new RentDao(Rent.this);
+        listViewRents = rentDao.getList();
 
-        if (listViewBrands != null) {
-            adapter = new ArrayAdapter<Brands>(this, android.R.layout.simple_list_item_1, listViewBrands);
+        if (listView != null) {
+            adapter = new ArrayAdapter<Rents>(this, android.R.layout.simple_list_item_1, listViewRents);
             listView.setAdapter(adapter);
         }
     }
-
-
 }
